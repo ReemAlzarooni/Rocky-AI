@@ -4,11 +4,11 @@ from openai import OpenAI
 
 # Connect to Gemma through LM Studio
 client = OpenAI(
-    base_url="http://localhost:1234/v1",
-    api_key="lm-studio"
+    base_url="https://api.groq.com/openai/v1",
+    api_key=st.secrets["GROQ_API_KEY"]
 )
 
-MODEL = "google/gemma-4-e4b"
+MODEL = "openai/gpt-oss-120b"
 
 # Page configuration
 st.set_page_config(

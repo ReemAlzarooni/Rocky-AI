@@ -1,6 +1,12 @@
 
 import streamlit as st
 from openai import OpenAI
+from pathlib import Path
+
+# Load AquaNova's project information
+ROCKET_INFO = (
+    Path(__file__).parent / "rocket_information.txt"
+).read_text(encoding="utf-8")
 
 # Connect to Gemma through LM Studio
 client = OpenAI(
@@ -22,7 +28,7 @@ st.title("🚀 Rocky AI")
 st.caption("Your Water Rocket Engineering Assistant")
 
 # Rocky's personality and instructions
-SYSTEM_PROMPT = """
+SYSTEM_PROMPT = f"""
 You are Rocky AI, an intelligent engineering assistant
 specializing in water rockets.
 
@@ -44,6 +50,13 @@ Be friendly, helpful and educational.
 Never invent information about the team's rocket.
 If you do not know a project-specific detail, say so.
 Do not provide instructions for unsafe pressurized experiments.
+
+AQUANOVA TEAM PROJECT INFORMATION:
+{ROCKET_INFO}
+
+Use this information when answering questions about Team AquaNova.
+Distinguish actual test results from simulation predictions.
+Never invent missing project details.
 """
 
 # Initialize chat history
